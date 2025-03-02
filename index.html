@@ -1,163 +1,163 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Virtual Love Jar ❤️</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-  <style>
-    body {
-      font-family: 'Arial', sans-serif;
-      background: linear-gradient(135deg, #ff9a9e, #fad0c4);
-      color: #333;
-      text-align: center;
-      padding: 50px;
-      margin: 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Love Jar for Kashmira</title>
+    <style>
+        /* Premium Font */
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
 
-    .container {
-      background: rgba(255, 255, 255, 0.9);
-      padding: 30px;
-      border-radius: 15px;
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-      max-width: 500px;
-      width: 100%;
-      animation: fadeIn 1.5s ease-in;
-    }
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #ff758c, #ff7eb3);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+            text-align: center;
+            color: white;
+            margin: 0;
+        }
 
-    h1 {
-      color: #ff4d4d;
-      font-size: 2.5em;
-      margin-bottom: 20px;
-    }
+        .jar-container {
+            position: relative;
+            width: 220px;
+            height: 260px;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 100px 100px 30px 30px;
+            border: 3px solid white;
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            overflow: hidden;
+            padding-bottom: 20px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+        }
 
-    .jar {
-      cursor: pointer;
-      margin: 20px 0;
-      transition: transform 0.3s ease;
-    }
+        .heart {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            background: red;
+            clip-path: polygon(50% 15%, 85% 15%, 100% 35%, 50% 100%, 0% 35%, 15% 15%);
+            cursor: pointer;
+            transition: transform 0.2s ease-in-out;
+        }
 
-    .jar img {
-      width: 150px;
-      height: auto;
-    }
+        .heart:hover {
+            transform: scale(1.2);
+        }
 
-    .jar:hover {
-      transform: scale(1.1);
-    }
+        /* Floating animation */
+        @keyframes float {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0); }
+        }
 
-    #message-container {
-      margin-top: 20px;
-      padding: 15px;
-      background: rgba(255, 255, 255, 0.9);
-      border-radius: 10px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-      animation: fadeIn 0.5s ease-in;
-    }
+        .heart:nth-child(odd) { animation: float 3s infinite ease-in-out; }
+        .heart:nth-child(even) { animation: float 4s infinite ease-in-out; }
 
-    #message {
-      font-size: 1.2em;
-      color: #ff4d4d;
-    }
+        .quote-box {
+            margin-top: 20px;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 15px;
+            border-radius: 10px;
+            font-size: 18px;
+            font-weight: 600;
+            width: 250px;
+            min-height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+        }
 
-    .hidden {
-      display: none;
-    }
+        .quote-box.show {
+            opacity: 1;
+        }
 
-    .save-button {
-      margin-top: 15px;
-      padding: 10px 20px;
-      background: #ff4d4d;
-      color: white;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      font-size: 1em;
-      transition: background 0.3s ease;
-    }
+        .footer {
+            margin-top: 20px;
+            font-size: 14px;
+        }
 
-    .save-button:hover {
-      background: #ff1a1a;
-    }
+        .footer a {
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+        }
 
-    footer {
-      margin-top: 30px;
-      font-size: 0.9em;
-      color: #666;
-    }
-
-    footer a {
-      color: #ff4d4d;
-      text-decoration: none;
-      display: inline-flex;
-      align-items: center;
-      gap: 5px;
-    }
-
-    footer a:hover {
-      text-decoration: underline;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-  </style>
+        .footer img {
+            width: 18px;
+        }
+    </style>
 </head>
 <body>
-  <div class="container">
-    <h1>Virtual Love Jar ❤️</h1>
-    <p>Click the jar to pull out a sweet message!</p>
-    <div class="jar" onclick="showMessage()">
-      <img src="https://raw.githubusercontent.com/Sithum0910/Virtual-love-jar/refs/heads/main/png-transparent-valentine-s-day-mason-jar-hearts-thumbnail.png" alt="Love Jar">
+
+    <h1>Love Jar for Kashmira</h1>
+    
+    <div class="jar-container" id="jar">
+        <!-- Hearts will be added dynamically -->
     </div>
-    <div id="message-container" class="hidden">
-      <p id="message"></p>
-      <button class="save-button" onclick="saveMessage()">Save Message</button>
+
+    <div class="quote-box" id="quoteBox">Click a heart to see a love message!</div>
+
+    <div class="footer">
+        <a href="https://github.com/Sithum0910" target="_blank">
+            <img src="https://cdn-icons-png.flaticon.com/512/25/25231.png" alt="GitHub"> Sithum
+        </a>
     </div>
-    <footer>
-      <p>Created with ❤️ by <a href="https://github.com/Sithum0910" target="_blank"><i class="fab fa-github"></i> GitHub</a></p>
-    </footer>
-  </div>
-  <audio id="sound-effect" src="assets/message-sound.mp3"></audio>
-  <script>
-    const messages = [
-      "You make me the happiest person in the world.",
-      "I love the way you laugh.",
-      "You’re my favorite person to talk to.",
-      "I can’t wait to see you again.",
-      "You’re my everything.",
-      "Every moment with you is a treasure.",
-      "I love you more than words can express.",
-      "You’re the best thing that ever happened to me.",
-      "I’m so grateful to have you in my life.",
-      "You’re my sunshine on a cloudy day."
-    ];
 
-    function showMessage() {
-      const messageContainer = document.getElementById("message-container");
-      const messageElement = document.getElementById("message");
-      const soundEffect = document.getElementById("sound-effect");
+    <script>
+        const quotes = [
+            "You are the light of my life ❤️",
+            "Every moment with you is a blessing 💖",
+            "My heart beats only for you 💕",
+            "You are my sunshine on a rainy day ☀️",
+            "Forever and always, my love 💞",
+            "I love you more than words can say 💘",
+            "You are my dream come true 😘",
+            "Your love makes my world magical ✨",
+            "I cherish every second with you 💗",
+            "You are my heart, my soul, my everything 💓"
+        ];
 
-      // Play sound effect
-      soundEffect.play();
+        const jar = document.getElementById("jar");
+        const quoteBox = document.getElementById("quoteBox");
 
-      // Pick a random message
-      const randomMessage = messages[Math.floor(Math.random() * messages.length)];
-      messageElement.innerText = randomMessage;
+        // Generate hearts inside the jar
+        function createHearts() {
+            for (let i = 0; i < 8; i++) {
+                let heart = document.createElement("div");
+                heart.classList.add("heart");
+                heart.style.left = `${Math.random() * 140 + 40}px`;
+                heart.style.bottom = `${Math.random() * 40}px`;
+                heart.onclick = () => showQuote();
+                jar.appendChild(heart);
+            }
+        }
 
-      // Show the message container
-      messageContainer.classList.remove("hidden");
-    }
+        // Show a random quote
+        function showQuote() {
+            const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
+            quoteBox.innerHTML = randomQuote;
+            quoteBox.classList.add("show");
 
-    function saveMessage() {
-      const message = document.getElementById("message").innerText;
-      alert(`Saved: "${message}"`);
-    }
-  </script>
+            // Hide after 3 seconds
+            setTimeout(() => {
+                quoteBox.classList.remove("show");
+            }, 3000);
+        }
+
+        createHearts();
+    </script>
+
 </body>
 </html>
