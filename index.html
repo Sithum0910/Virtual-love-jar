@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Love Jar for Kashmira</title>
     <style>
-        /* Premium Font */
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
 
         body {
@@ -19,46 +18,67 @@
             text-align: center;
             color: white;
             margin: 0;
+            overflow: hidden;
         }
 
         .jar-container {
             position: relative;
-            width: 220px;
-            height: 260px;
-            background: rgba(255, 255, 255, 0.3);
-            border-radius: 100px 100px 30px 30px;
+            width: 200px;
+            height: 280px;
+            background: radial-gradient(circle, rgba(255,255,255,0.4), rgba(255,255,255,0.1));
+            border-radius: 100px 100px 40px 40px;
             border: 3px solid white;
+            box-shadow: inset 0px -5px 10px rgba(0, 0, 0, 0.2);
             display: flex;
             justify-content: center;
             align-items: flex-end;
             overflow: hidden;
-            padding-bottom: 20px;
-            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+            padding-bottom: 10px;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .jar-lid {
+            width: 120px;
+            height: 30px;
+            background: #d9534f;
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 10px;
+            box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.2);
+            transition: top 0.3s ease-in-out;
+        }
+
+        .jar-container.open {
+            transform: scale(1.05);
+        }
+
+        .jar-container.open .jar-lid {
+            top: -50px;
         }
 
         .heart {
             position: absolute;
-            width: 30px;
-            height: 30px;
-            background: red;
-            clip-path: polygon(50% 15%, 85% 15%, 100% 35%, 50% 100%, 0% 35%, 15% 15%);
+            width: 35px;
+            height: 35px;
+            background-image: url('https://raw.githubusercontent.com/Sithum0910/Virtual-love-jar/refs/heads/main/ai-generated-pixelation-of-red-heart-in-image-free-png.png');
+            background-size: contain;
+            background-repeat: no-repeat;
             cursor: pointer;
             transition: transform 0.2s ease-in-out;
+            animation: float 4s infinite ease-in-out;
         }
 
         .heart:hover {
             transform: scale(1.2);
         }
 
-        /* Floating animation */
         @keyframes float {
             0% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
+            50% { transform: translateY(-20px); }
             100% { transform: translateY(0); }
         }
-
-        .heart:nth-child(odd) { animation: float 3s infinite ease-in-out; }
-        .heart:nth-child(even) { animation: float 4s infinite ease-in-out; }
 
         .quote-box {
             margin-top: 20px;
@@ -104,6 +124,7 @@
     <h1>Love Jar for Kashmira</h1>
     
     <div class="jar-container" id="jar">
+        <div class="jar-lid"></div>
         <!-- Hearts will be added dynamically -->
     </div>
 
@@ -117,40 +138,55 @@
 
     <script>
         const quotes = [
-            "You are the light of my life ❤️",
-            "Every moment with you is a blessing 💖",
-            "My heart beats only for you 💕",
-            "You are my sunshine on a rainy day ☀️",
-            "Forever and always, my love 💞",
-            "I love you more than words can say 💘",
-            "You are my dream come true 😘",
-            "Your love makes my world magical ✨",
-            "I cherish every second with you 💗",
-            "You are my heart, my soul, my everything 💓"
+            "You are the love of my life ❤️", "Every moment with you is special 💖",
+            "I love you more than words can say 💕", "You are my sunshine ☀️",
+            "Forever and always, my love 💞", "Your smile lights up my world ✨",
+            "I cherish every second with you 💗", "My heart beats only for you 💓",
+            "You are my dream come true 😘", "Your love is my greatest gift 🎁",
+            "Being with you is my happy place 😊", "I am lucky to have you 💖",
+            "You make my life complete 🌟", "Your love is my favorite story 📖",
+            "You are my heart, my soul, my everything 💕", "I adore you beyond measure 💝",
+            "You are the best thing that ever happened to me 🌹", "Loving you is easy 💘",
+            "Every love song reminds me of you 🎶", "My love for you grows stronger every day 🌱",
+            "You make my world beautiful 🌈", "You are my sweet escape 🌺",
+            "I fall for you every single day 🍂", "Your love is my safe haven 🏡",
+            "You are my forever and always 🔥", "You complete me 💑",
+            "Your love makes my world magical ✨", "I never want to lose you 💞",
+            "You make my heart race 🏎️", "You are my heart's greatest treasure 💎",
+            "My love for you is infinite ♾️", "You make every moment unforgettable 🌟",
+            "With you, I feel truly alive 💖", "My heart belongs to you 💘",
+            "Your love is my favorite adventure 🚀", "Every day with you is a blessing 🙏",
+            "You make my soul dance 💃", "Your love fills my heart with joy 🎉",
+            "You are the sweetest part of my life 🍯", "You are my reason to smile 😊",
+            "I am grateful for your love every day ❤️", "You are my happily ever after 🏰",
+            "You make my heart skip a beat 💗", "Every second with you is precious ⏳",
+            "You are my world 🌍", "Your love is my forever home 🏡"
         ];
 
         const jar = document.getElementById("jar");
         const quoteBox = document.getElementById("quoteBox");
 
-        // Generate hearts inside the jar
         function createHearts() {
-            for (let i = 0; i < 8; i++) {
+            for (let i = 0; i < 10; i++) {
                 let heart = document.createElement("div");
                 heart.classList.add("heart");
-                heart.style.left = `${Math.random() * 140 + 40}px`;
+                heart.style.left = `${Math.random() * 120 + 40}px`;
                 heart.style.bottom = `${Math.random() * 40}px`;
+                heart.style.animationDuration = `${Math.random() * 3 + 4}s`;
                 heart.onclick = () => showQuote();
                 jar.appendChild(heart);
             }
         }
 
-        // Show a random quote
         function showQuote() {
-            const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
-            quoteBox.innerHTML = randomQuote;
+            quoteBox.innerHTML = quotes[Math.floor(Math.random() * quotes.length)];
             quoteBox.classList.add("show");
 
-            // Hide after 3 seconds
+            jar.classList.add("open");
+            setTimeout(() => {
+                jar.classList.remove("open");
+            }, 1000);
+
             setTimeout(() => {
                 quoteBox.classList.remove("show");
             }, 3000);
