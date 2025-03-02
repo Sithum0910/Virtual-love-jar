@@ -1,64 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Pick Your Heart</title>
   <style>
-    /* Import a premium font */
     @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
 
     * {
       box-sizing: border-box;
+      margin: 0;
+      padding: 0;
     }
     body {
       font-family: 'Poppins', sans-serif;
       background: linear-gradient(135deg, #ff758c, #ff7eb3);
-      margin: 0;
-      overflow-x: hidden;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      min-height: 100vh;
+      height: 100vh;
       text-align: center;
       color: white;
-      padding: 20px;
     }
     h1 {
       font-size: 2.5rem;
       margin-bottom: 20px;
-      text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
     }
-    /* Jar Container using provided jar image */
+    /* CSS Jar Design */
     .jar-container {
       position: relative;
-      width: 250px;
-      height: 350px;
-      background: url('https://raw.githubusercontent.com/Sithum0910/Virtual-love-jar/refs/heads/main/png-transparent-valentine-s-day-mason-jar-hearts-thumbnail.png') no-repeat center;
-      background-size: contain;
-      margin-bottom: 20px;
-      cursor: pointer;
-      transition: transform 0.3s ease-in-out;
+      width: 200px;
+      height: 300px;
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 30px 30px 80px 80px;
+      border: 3px solid rgba(255, 255, 255, 0.5);
+      box-shadow: inset 0px 0px 10px rgba(255, 255, 255, 0.3);
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+      overflow: hidden;
+      padding-bottom: 20px;
     }
-    /* Jar lid element for opening animation */
     .jar-lid {
       position: absolute;
-      width: 130px;
-      height: 30px;
+      width: 220px;
+      height: 40px;
       background: #d9534f;
-      top: 20px;
+      border-radius: 10px;
+      top: -10px;
       left: 50%;
       transform: translateX(-50%);
-      border-radius: 10px;
-      box-shadow: 0px 3px 6px rgba(0,0,0,0.3);
       transition: top 0.4s ease-in-out;
-      z-index: 2;
+      box-shadow: 0px 4px 6px rgba(0,0,0,0.3);
     }
     .jar-container.open .jar-lid {
-      top: -40px;
+      top: -60px;
     }
-    /* Floating hearts inside the jar */
     .heart {
       position: absolute;
       width: 35px;
@@ -67,19 +65,13 @@
       background-size: contain;
       background-repeat: no-repeat;
       cursor: pointer;
-      transition: transform 0.2s ease-in-out;
-      animation: float linear infinite;
+      animation: float 3s infinite ease-in-out;
     }
-    .heart:hover {
-      transform: scale(1.2);
-    }
-    /* Adjust the floating animation duration randomly */
     @keyframes float {
-      0%   { transform: translateY(0); }
-      50%  { transform: translateY(-20px); }
+      0% { transform: translateY(0); }
+      50% { transform: translateY(-15px); }
       100% { transform: translateY(0); }
     }
-    /* Quote box styling */
     .quote-box {
       background: rgba(255, 255, 255, 0.2);
       padding: 15px;
@@ -93,17 +85,16 @@
       justify-content: center;
       opacity: 0;
       transition: opacity 0.5s ease-in-out;
-      margin-bottom: 20px;
+      margin-top: 20px;
     }
     .quote-box.show {
       opacity: 1;
     }
-    /* Footer with GitHub icon only */
     .footer {
+      margin-top: 20px;
+      font-size: 0.9rem;
       display: flex;
       align-items: center;
-      justify-content: center;
-      font-size: 0.9rem;
       gap: 8px;
     }
     .footer a {
@@ -123,25 +114,19 @@
   <h1>Pick Your Heart</h1>
   
   <div class="jar-container" id="jar">
-    <!-- Jar lid for animation -->
     <div class="jar-lid"></div>
-    <!-- Hearts will be injected dynamically -->
   </div>
 
-  <div class="quote-box" id="quoteBox">
-    Click a heart to see a love message!
-  </div>
+  <div class="quote-box" id="quoteBox">Click a heart to see a love message!</div>
 
   <div class="footer">
-    <!-- GitHub icon linking to your profile (without name text) -->
     <a href="https://github.com/Sithum0910" target="_blank">
       <img src="https://cdn-icons-png.flaticon.com/512/25/25231.png" alt="GitHub">
     </a>
-    <span style="font-size: 0.8rem;">Developed by</span>
+    <span>Developed by</span>
   </div>
 
   <script>
-    // Array with 100 random love quotes
     const quotes = [
       "You are the love of my life ❤️", "Every moment with you is special 💖",
       "I love you more than words can say 💕", "You are my sunshine ☀️",
@@ -149,60 +134,30 @@
       "I cherish every second with you 💗", "My heart beats only for you 💓",
       "You are my dream come true 😘", "Your love is my greatest gift 🎁",
       "Being with you is my happy place 😊", "I am lucky to have you 💖",
-      "You make my life complete 🌟", "Your love is my favorite story 📖",
-      "You are my heart, my soul, my everything 💕", "I adore you beyond measure 💝",
-      "You are the best thing that ever happened to me 🌹", "Loving you is easy 💘",
-      "Every love song reminds me of you 🎶", "My love for you grows stronger every day 🌱",
-      "You make my world beautiful 🌈", "You are my sweet escape 🌺",
-      "I fall for you every single day 🍂", "Your love is my safe haven 🏡",
-      "You are my forever and always 🔥", "You complete me 💑",
-      "Your love makes my world magical ✨", "I never want to lose you 💞",
-      "You make my heart race 🏎️", "You are my heart's greatest treasure 💎",
-      "My love for you is infinite ♾️", "You make every moment unforgettable 🌟",
-      "With you, I feel truly alive 💖", "My heart belongs to you 💘",
-      "Your love is my favorite adventure 🚀", "Every day with you is a blessing 🙏",
-      "You make my soul dance 💃", "Your love fills my heart with joy 🎉",
-      "You are the sweetest part of my life 🍯", "You are my reason to smile 😊",
-      "I am grateful for your love every day ❤️", "You are my happily ever after 🏰",
-      "You make my heart skip a beat 💗", "Every second with you is precious ⏳",
-      "You are my world 🌍", "Your love is my forever home 🏡",
-      "I treasure every moment with you 💝", "You make life worth living 💫",
-      "Your love is like a melody that soothes my soul 🎵", "I am enchanted by your love ✨",
-      "My heart sings for you 🎶", "You are the light in my darkness 🌟",
-      "You inspire me every day 🌹", "My love for you is a journey, not a destination 🚀",
-      "You make everything better just by being there 💕", "Your love is pure magic ✨",
-      "I am lost in your eyes 😍", "Your touch is my favorite feeling 🤗",
-      "Every heartbeat whispers your name 💓", "You are my forever love 💞",
-      "I melt every time I see you ❤️", "You are my endless inspiration 💡",
-      "You fill my life with happiness 😊", "Your love is my guiding star ⭐",
-      "You are the poem I always wanted to write 📝", "I can’t imagine my life without you 💘",
-      "You are the spark that lights up my heart 🔥", "Every day with you is a new adventure 🚀",
-      "You are the essence of my joy 😄", "Your love completes me in every way 💝",
-      "With you, life is a beautiful dream 💫", "You are my favorite hello and hardest goodbye 💔",
-      "You are the reason behind my smile 😊", "Every moment with you is a treasure 💎",
-      "You are my heart’s delight 💖", "Your love is the key to my happiness 🔑",
-      "My soul feels at home when I’m with you 🏠", "You are my eternal flame 🔥",
-      "Your love colors my world in the most beautiful shades 🎨", "I love you beyond the stars ✨",
-      "Your embrace is my sanctuary 🛡️", "I am forever mesmerized by you 💫",
-      "You are my greatest adventure and sweetest dream 🌟"
+      "You make my life complete 🌟", "You are my heart, my soul, my everything 💕",
+      "I adore you beyond measure 💝", "You are the best thing that ever happened to me 🌹",
+      "Loving you is easy 💘", "Every love song reminds me of you 🎶",
+      "My love for you grows stronger every day 🌱", "You make my world beautiful 🌈",
+      "You are my sweet escape 🌺", "I fall for you every single day 🍂",
+      "Your love is my safe haven 🏡", "You are my forever and always 🔥",
+      "You complete me 💑", "Your love makes my world magical ✨",
+      "I never want to lose you 💞", "You make my heart race 🏎️",
+      "You are my heart's greatest treasure 💎", "My love for you is infinite ♾️",
+      "You make every moment unforgettable 🌟", "With you, I feel truly alive 💖",
+      "My heart belongs to you 💘", "Your love is my favorite adventure 🚀"
     ];
 
     const jar = document.getElementById("jar");
     const quoteBox = document.getElementById("quoteBox");
 
-    // Create hearts dynamically inside the jar
     function createHearts() {
-      // Adjust number of hearts as desired
-      for (let i = 0; i < 12; i++) {
+      for (let i = 0; i < 10; i++) {
         const heart = document.createElement("div");
         heart.classList.add("heart");
-        // Randomly position within the jar container boundaries
-        heart.style.left = `${Math.random() * 150 + 50}px`;
+        heart.style.left = `${Math.random() * 120 + 40}px`;
         heart.style.bottom = `${Math.random() * 80 + 20}px`;
-        // Randomize floating animation duration for variation
         heart.style.animationDuration = `${Math.random() * 3 + 4}s`;
         heart.onclick = (e) => {
-          // Prevent multiple triggers if a heart is clicked
           e.stopPropagation();
           showQuote();
         };
@@ -210,29 +165,22 @@
       }
     }
 
-    // Show a random quote and animate jar lid
     function showQuote() {
-      // Pick a random quote from the array
       const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
       quoteBox.innerHTML = randomQuote;
       quoteBox.classList.add("show");
       
-      // Trigger jar lid opening animation
       jar.classList.add("open");
       setTimeout(() => {
         jar.classList.remove("open");
       }, 800);
       
-      // Hide quote after a few seconds
       setTimeout(() => {
         quoteBox.classList.remove("show");
       }, 3000);
     }
 
-    // Initialize hearts on page load
     createHearts();
-
-    // Optionally, you can also trigger a quote by clicking anywhere on the jar:
     jar.addEventListener("click", showQuote);
   </script>
 </body>
