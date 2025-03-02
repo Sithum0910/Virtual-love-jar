@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Virtual Love Jar ❤️ by Sithum</title>
+  <title>Virtual Love Jar ❤️</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
   <style>
     body {
       font-family: 'Arial', sans-serif;
@@ -12,50 +13,79 @@
       text-align: center;
       padding: 50px;
       margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
     }
 
     .container {
-      background: rgba(255, 255, 255, 0.8);
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-      max-width: 600px;
-      margin: 0 auto;
+      background: rgba(255, 255, 255, 0.9);
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+      max-width: 500px;
+      width: 100%;
+      animation: fadeIn 1.5s ease-in;
     }
 
     h1 {
       color: #ff4d4d;
-      animation: fadeIn 2s ease-in;
+      font-size: 2.5em;
+      margin-bottom: 20px;
     }
 
     .jar {
       cursor: pointer;
       margin: 20px 0;
+      transition: transform 0.3s ease;
     }
 
     .jar img {
       width: 150px;
-      transition: transform 0.3s ease;
+      height: auto;
     }
 
-    .jar:hover img {
+    .jar:hover {
       transform: scale(1.1);
     }
 
     #message-container {
       margin-top: 20px;
-      padding: 10px;
+      padding: 15px;
       background: rgba(255, 255, 255, 0.9);
-      border-radius: 5px;
-      animation: fadeIn 1s ease-in;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      animation: fadeIn 0.5s ease-in;
+    }
+
+    #message {
+      font-size: 1.2em;
+      color: #ff4d4d;
     }
 
     .hidden {
       display: none;
     }
 
+    .save-button {
+      margin-top: 15px;
+      padding: 10px 20px;
+      background: #ff4d4d;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 1em;
+      transition: background 0.3s ease;
+    }
+
+    .save-button:hover {
+      background: #ff1a1a;
+    }
+
     footer {
-      margin-top: 20px;
+      margin-top: 30px;
       font-size: 0.9em;
       color: #666;
     }
@@ -63,6 +93,9 @@
     footer a {
       color: #ff4d4d;
       text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
     }
 
     footer a:hover {
@@ -77,16 +110,17 @@
 </head>
 <body>
   <div class="container">
-    <h1>Virtual Love Jar by Sithum</h1>
+    <h1>Virtual Love Jar ❤️</h1>
     <p>Click the jar to pull out a sweet message!</p>
     <div class="jar" onclick="showMessage()">
-      <img src="assets/jar.png" alt="Love Jar">
+      <img src="https://raw.githubusercontent.com/Sithum0910/Virtual-love-jar/refs/heads/main/png-transparent-valentine-s-day-mason-jar-hearts-thumbnail.png" alt="Love Jar">
     </div>
     <div id="message-container" class="hidden">
       <p id="message"></p>
+      <button class="save-button" onclick="saveMessage()">Save Message</button>
     </div>
     <footer>
-      <p>Created with ❤️ by <a href="https://github.com/Sithum0910" target="_blank">Sithum</a></p>
+      <p>Created with ❤️ by <a href="https://github.com/Sithum0910" target="_blank"><i class="fab fa-github"></i> GitHub</a></p>
     </footer>
   </div>
   <audio id="sound-effect" src="assets/message-sound.mp3"></audio>
@@ -118,11 +152,11 @@
 
       // Show the message container
       messageContainer.classList.remove("hidden");
+    }
 
-      // Hide the message after 5 seconds (optional)
-      setTimeout(() => {
-        messageContainer.classList.add("hidden");
-      }, 5000);
+    function saveMessage() {
+      const message = document.getElementById("message").innerText;
+      alert(`Saved: "${message}"`);
     }
   </script>
 </body>
