@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Virtual Love Jar ❤️</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Virtual Love Jar</h1>
+    <p>Click the jar to pull out a sweet message!</p>
+    <div class="jar" onclick="showMessage()">
+      <img src="assets/jar.png" alt="Love Jar">
+    </div>
+    <div id="message-container" class="hidden">
+      <p id="message"></p>
+    </div>
+  </div>
+  <audio id="sound-effect" src="assets/message-sound.mp3"></audio>
+  <script src="script.js"></script>
+</body>
+</html>
